@@ -1,0 +1,7 @@
+{
+  "name": "mc12",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
