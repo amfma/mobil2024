@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>profesor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Profesor {{data.usuario}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Bienvenido</ion-card-subtitle>
+      <ion-card-title>Profesor {{data.usuario}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>Clase</ion-label>
+      <ion-item>
+        <ion-label>Clase</ion-label>
+        <ion-select value="Clase" placeholder="Select Pizza">
+          <ion-select-option value="ingdatos">Ingeneria de Datos</ion-select-option>
+          <ion-select-option value="ingsoftware">Ingeneria de Software</ion-select-option>
+          <ion-select-option value="movdev">Desarrollo Movil</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora</ion-label>
+        <ion-datetime presentation="time"></ion-datetime>
+      </ion-item>
+      <ion-button expand="block" fill="clear" shape="round">
+        Generar Codigo
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
