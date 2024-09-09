@@ -30,9 +30,24 @@
         <ion-label>Hora</ion-label>
         <ion-datetime presentation="time"></ion-datetime>
       </ion-item>
-      <ion-button expand="block" fill="clear" shape="round">
+      <ion-button expand="block" fill="clear" shape="round" (click)="abrirModal(true)">
         Generar Codigo
       </ion-button>
     </ion-card-content>
   </ion-card>
+  <ion-modal [isOpen] = "modalAbierto">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>QR</ion-title>
+          <ion-button (click)="abrirModal(false)" expand="block" fill="clear" shape="round">
+            Cerrar
+          </ion-button>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <qrcode [qrdata]="qrString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfesorPage {
   data: any;
+  modalAbierto: boolean = false;
+  qrString: string = "";
 
   constructor(private activatedrouter:ActivatedRoute, private router: Router) {
     this.activatedrouter.queryParamMap.subscribe(params => {
@@ -18,5 +20,11 @@ export class ProfesorPage {
     })
    }
 
-
+   abrirModal(estaAbierto: boolean){
+    if (this.qrString === "") {
+      this.modalAbierto = estaAbierto;
+    } else {
+      this.qrString = "Hola";
+    }
+   }
 }
