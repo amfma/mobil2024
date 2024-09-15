@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Bienvenido
+      Modulo Estudiante
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,9 +10,46 @@
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Bienvenido {{data.usuario}}</ion-card-subtitle>
-      <ion-card-title>QR</ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col><ion-button (click)="abrirScannerModal(true)" 
+            expand="block" fill="solid">
+            Abrir scanner
+          </ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
   </ion-card>
+  <ion-modal [isOpen]="modalScannerAbierto">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>QR Scanner</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-card>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col>Temporal: Poner aqui el viewport de la camara</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><ion-button (click)="scannear()" expand="block" fill="solid" shape="round">
+                Scannear
+              </ion-button></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><ion-button (click)="abrirScannerModal(false)" expand="block" fill="solid" shape="round">
+                Cerrar
+              </ion-button></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 
 <ion-footer>

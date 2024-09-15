@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController, IonInput } from '@ionic/angular';
-import { isStr } from 'ionicons/dist/types/components/icon/utils';
-import { addIcons } from 'ionicons';
+
 
 @Component({
   selector: 'app-login',

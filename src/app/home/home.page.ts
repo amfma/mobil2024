@@ -10,7 +10,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
   data: any;
-  isSupported: boolean = false;
+  modalScannerAbierto: boolean = false;
+  // isSupported: boolean = false;
 
 
   constructor(private activatedrouter:ActivatedRoute, private router:Router,
@@ -31,6 +32,14 @@ export class HomePage {
       buttons: ['Ok']
     });
     await alert.present()
+  }
+
+  abrirScannerModal(estado: boolean){
+    this.modalScannerAbierto = estado;
+  }
+
+  scannear(){
+    return;
   }
 
 }
