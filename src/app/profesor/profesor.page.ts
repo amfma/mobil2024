@@ -10,6 +10,8 @@ export class ProfesorPage {
   data: any;
   modalAbierto: boolean = false;
   qrString: string = "";
+  clase: string = "";
+  hora = "00:00";
 
   constructor(private activatedrouter:ActivatedRoute, private router: Router) {
     this.activatedrouter.queryParamMap.subscribe(params => {
@@ -21,10 +23,8 @@ export class ProfesorPage {
    }
 
    abrirModal(estaAbierto: boolean){
-    if (this.qrString === "") {
-      this.modalAbierto = estaAbierto;
-    } else {
-      this.qrString = "Hola";
-    }
+    console.log(this.hora)
+    this.qrString = this.qrString.concat(this.clase, this.hora)
+    this.modalAbierto = estaAbierto
    }
 }

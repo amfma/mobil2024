@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonInput } from '@ionic/angular';
+import { isStr } from 'ionicons/dist/types/components/icon/utils';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   modalAbierto: boolean = false;
+  mensajeErrorUsuario: string = "Requiere al menos 4 caracteres";
+  mensajeErrorPassword: string = "Debe contener al menos 4 caracteres";
 
   constructor(private router: Router, public acontrol:AlertController) {
    }
@@ -63,6 +67,7 @@ async alertaRecuperar(){
       }
     };
 
+
     switch (this.user.password) {
       case "profesor":
         this.router.navigate(['/profesor'], navigationextras) 
@@ -86,4 +91,9 @@ async alertaRecuperar(){
     this.alertaRecuperar()
   }
 
+//Objetivo: Cambiar el mensaje de error segun lo tipeado
+//De momento da bugs al evaluar el mensaje
+  userInput(){
+    console.log('!')
+  }
 }

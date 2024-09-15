@@ -17,12 +17,26 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item lines="full">
-        <ion-label>Usuario</ion-label>
-        <ion-input type="text" [(ngModel)]="user.usuario" ></ion-input>
+        <ion-input type="text" [(ngModel)]="user.usuario"
+        label="Usuario" 
+        minlength="4"
+        maxlength="20"
+        counter="true"
+        [errorText]="mensajeErrorUsuario"
+        labelPlacement="floating"
+        (ionInput)="userInput()"
+        required="true"></ion-input>
       </ion-item>
       <ion-item lines="full">
-        <ion-label>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        <ion-input type="password" [(ngModel)]="user.password"
+        label="Password"
+        minlength="4"
+        maxlength="20"
+        labelPlacement="floating"
+        [errorText]="mensajeErrorPassword"
+        maxlength="100"
+        counter="true"
+        required="true"></ion-input>
       </ion-item>
       <ion-row>
         <ion-col>
