@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CapacitorBarcodeScannerOptions, CapacitorBarcodeScannerTypeHint,
+  CapacitorBarcodeScanner
+ } from '@capacitor/barcode-scanner';
 import { AlertController } from '@ionic/angular';
 
 
@@ -11,7 +14,11 @@ import { AlertController } from '@ionic/angular';
 export class HomePage {
   data: any;
   modalScannerAbierto: boolean = false;
-  // isSupported: boolean = false;
+  barcodeResult!: string;
+  private options: CapacitorBarcodeScannerOptions ={
+    scanButton: true,
+    hint: CapacitorBarcodeScannerTypeHint.ALL
+  }
 
 
   constructor(private activatedrouter:ActivatedRoute, private router:Router,
@@ -38,8 +45,9 @@ export class HomePage {
     this.modalScannerAbierto = estado;
   }
 
-  scannear(){
-    return;
+  public async scannear(): Promise<void>{
+    this.barcodeResult = (await CapacitorBarcodeScanner.scanBarcode(this.options)).ScanResult;
+    console.log(this.barcodeResult)
   }
 
 }

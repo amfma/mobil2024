@@ -33,7 +33,8 @@
         <ion-card>
           <ion-grid fixed>
             <ion-row>
-              <ion-col>Temporal: Poner aqui el viewport de la camara</ion-col>
+              <ion-col>DATA QR: {{barcodeResult ? barcodeResult: 'Sin data'}}
+              </ion-col>
             </ion-row>
             <ion-row>
               <ion-col><ion-button (click)="scannear()" expand="block" fill="solid" shape="round">
