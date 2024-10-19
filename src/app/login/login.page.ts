@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController, IonInput } from '@ionic/angular';
+import { AuthService } from '../service/auth/auth.service';
 
 
 @Component({
@@ -13,8 +14,9 @@ export class LoginPage implements OnInit {
   mensajeErrorUsuario: string = "Requiere al menos 4 caracteres";
   mensajeErrorPassword: string = "Debe contener al menos 4 caracteres";
 
-  constructor(private router: Router, public acontrol:AlertController) {
-   }
+  constructor(private router: Router, public acontrol:AlertController
+    , private auth: AuthService
+  ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
@@ -69,9 +71,11 @@ async alertaRecuperar(){
 
     switch (this.user.password) {
       case "profesor":
+        this.auth.login('JUAN GABRIEL', 'PROFESOR')
         this.router.navigate(['/profesor'], navigationextras) 
         break;
       case "estudiante":
+        this.auth.login('ANDRES MPODOZIS', 'ESTUDIANTE')
         this.router.navigate(['/home'], navigationextras)
         break;
       default:

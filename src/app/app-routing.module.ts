@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthProfesorService } from './service/guards/auth-profesor.service';
+import { AuthEstudianteService } from './service/guards/auth-estudiante.service';
 
 const routes: Routes = [
   {
@@ -17,11 +19,13 @@ const routes: Routes = [
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule),
+    canActivate: [AuthEstudianteService]
   },
   {
     path: 'profesor',
-    loadChildren: () => import('./profesor/profesor.module').then( m => m.ProfesorPageModule)
+    loadChildren: () => import('./profesor/profesor.module').then( m => m.ProfesorPageModule),
+    canActivate: [AuthProfesorService]
   },
 ];
 
