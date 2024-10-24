@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertController, IonInput } from '@ionic/angular';
 import { AuthService } from '../service/auth/auth.service';
+import { ApiService } from '../service/api/api.service';
 
 
 @Component({
@@ -13,9 +14,10 @@ export class LoginPage implements OnInit {
   modalAbierto: boolean = false;
   mensajeErrorUsuario: string = "Requiere al menos 4 caracteres";
   mensajeErrorPassword: string = "Debe contener al menos 4 caracteres";
+  log: any
 
   constructor(private router: Router, public acontrol:AlertController
-    , private auth: AuthService
+    , private auth: AuthService, private api: ApiService
   ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
@@ -61,28 +63,26 @@ async alertaRecuperar(){
 // ingresar() controla el presionar ingresar en la pagina principal
 // De momento utiliza this.user.password para determinar en que direccion enviar
 // Si los casos no son "estudiante" o "profesor" muestrar alertaPassword()
-  ingresar(){
-    let navigationextras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    };
-
-
-    switch (this.user.password) {
-      case "profesor":
-        this.auth.login('JUAN GABRIEL', 'PROFESOR')
-        this.router.navigate(['/profesor'], navigationextras) 
-        break;
-      case "estudiante":
-        this.auth.login('ANDRES MPODOZIS', 'ESTUDIANTE')
-        this.router.navigate(['/home'], navigationextras)
-        break;
-      default:
-        this.alertaPassword()
-    };
+  async ingresar(){
+    
+    this.api.getLogin(this.user.usuario, this.user.password).subscribe((newUsuario)=>{
+      console.log(newUsuario)
+      switch (newUsuario.rol_id){
+        case 1:
+          this.auth.login(newUsuario.nombre, 'PROFESOR', newUsuario.id)
+          this.router.navigate(['/profesor'])
+          break;
+        case 2:
+          this.auth.login('ANDRES MPODOZIS', 'ESTUDIANTE', newUsuario.id)
+          this.router.navigate(['/home'])
+          break;
+        default:
+          this.alertaPassword();
+      };
+    })
 
   }
+
   
 //Control del boton de recuperar contraseña.
 //WIP diseñar el modal de recuperar contraseña

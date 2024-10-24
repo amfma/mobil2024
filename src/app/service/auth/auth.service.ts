@@ -8,14 +8,16 @@ export class AuthService {
   isLogin: boolean = false;
   role: string | undefined;
   name: string | undefined;
+  id: number | undefined;
 
   constructor(private storage: StorageService) { }
 
-  public login(name: string, role: string){
+  public login(name: string, role: string, id: number){
     this.isLogin = true;
     this.role = role;
     this.name = name;
-    this.storage.login(this.role, this.name)
+    this.id = id
+    this.storage.login(this.role, this.name, this.id)
   }
 
   public logout(){

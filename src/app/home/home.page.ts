@@ -21,15 +21,9 @@ export class HomePage {
   }
 
 
-  constructor(private activatedrouter:ActivatedRoute, private router:Router,
+  constructor(private router:Router,
     private alertController: AlertController
   ) {
-    this.activatedrouter.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras.state){
-        this.data = this.router.getCurrentNavigation()?.extras.state?.['user'];
-        console.log(this.data)
-      } else {this.router.navigate(['/login'])}
-    })
   }
 
   async presentAlert(): Promise<void> {
