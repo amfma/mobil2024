@@ -13,11 +13,10 @@ import { ApiService } from '../service/api/api.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   data: any;
   modalScannerAbierto: boolean = false;
   barcodeResult!: string;
-  id: number= 1
   private options: CapacitorBarcodeScannerOptions ={
     scanButton: true,
     hint: CapacitorBarcodeScannerTypeHint.ALL
@@ -30,6 +29,11 @@ export class HomePage {
     private api:ApiService
   ) {
   }
+
+  ngOnInit(){
+    console.log(this.auth.id)
+  }
+
 
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
@@ -47,7 +51,9 @@ export class HomePage {
   public async scannear(): Promise<void>{
     this.barcodeResult = (await CapacitorBarcodeScanner.scanBarcode(this.options)).ScanResult;
     console.log(this.barcodeResult)
-    //this.api.actualizarAsistencia(this.barcodeResult, this.auth.id)
+    this.api.actualizarAsistencia(this.barcodeResult, this.auth.id??10).subscribe((resp)=>{
+      console.log(resp)
+    })
   }
 
   logout(){

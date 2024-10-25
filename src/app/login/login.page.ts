@@ -73,7 +73,7 @@ async alertaRecuperar(){
           this.router.navigate(['/profesor'])
           break;
         case 2:
-          this.auth.login('ANDRES MPODOZIS', 'ESTUDIANTE', newUsuario.id)
+          this.auth.login(newUsuario.nombre, 'ESTUDIANTE', newUsuario.id)
           this.router.navigate(['/home'])
           break;
         default:

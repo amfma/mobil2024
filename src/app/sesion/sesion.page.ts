@@ -29,19 +29,19 @@ sesion_id!: number;
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
     this.NuevaSesion()
-    this.crearQR()
   }
 
   NuevaSesion(){
     this.api.createSesion(this.data).subscribe((sesion)=>{
       this.lista = sesion.lista_alumnos
       this.sesion_id = sesion.sesion_id
+      this.crearQR()
       console.log(this.lista)
     })
   }
 
   crearQR(){
-    this.string_qrcode = 'http://127.0.0.1:800/asistencia/'+this.sesion_id+'?estudiante_id='
+    this.string_qrcode = 'http://127.0.0.1:8000/asistencia/'+this.sesion_id+'?estudiante_id='
   }
 
   volver(){
