@@ -1,17 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Sesion </ion-title>
+    <ion-title>Sesion {{sesion_id}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="volver()"> Volver </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">sesion</ion-title>
+      <ion-title size="large">Sesion</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-row *ngFor="let estudiante of lista">
+
+  <ion-card>
+    <qrcode
+      [qrdata]="string_qrcode"
+      [width]="256"
+      [errorCorrectionLevel]="'M'"
+    ></qrcode>
+  </ion-card>
+  <ion-card>
+    <ion-row *ngFor="let estudiante of lista">
       <ion-col> {{estudiante.nombre_alumno}} </ion-col>
       <ion-col> {{estudiante.asistencia ? 'Presente': 'Ausente'}} </ion-col>
-  </ion-row>
+    </ion-row>
+  </ion-card>
 </ion-content>

@@ -14,8 +14,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfesorPageRoutingModule,
-    QRCodeModule
+    ProfesorPageRoutingModule
   ],
   declarations: [ProfesorPage]
 })

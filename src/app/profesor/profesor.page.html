@@ -37,6 +37,11 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <ion-card>
+      <ion-button (click)="logout()" expand="block" fill="solid" shape="round">
+        Cerrar Sesion
+      </ion-button>
+  </ion-card>
   <ion-modal [isOpen] = "modalAbierto">
     <ng-template>
       <ion-header>

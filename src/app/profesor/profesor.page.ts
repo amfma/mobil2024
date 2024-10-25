@@ -52,4 +52,9 @@ export class ProfesorPage implements OnInit{
 
     this.router.navigate(['/sesion'], nav)
    }
+
+   logout(){
+    this.auth.logout()
+    this.router.navigate(['/login'])
+   }
 }

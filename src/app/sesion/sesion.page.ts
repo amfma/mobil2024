@@ -10,6 +10,8 @@ import { ApiService } from '../service/api/api.service';
 export class SesionPage implements OnInit {
 data: any;
 lista: any[] = [];
+string_qrcode: string = "";
+sesion_id!: number;
 
   constructor(private activeroute: ActivatedRoute, private router: Router
     , private api: ApiService
@@ -27,13 +29,23 @@ lista: any[] = [];
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
     this.NuevaSesion()
+    this.crearQR()
   }
 
   NuevaSesion(){
     this.api.createSesion(this.data).subscribe((sesion)=>{
       this.lista = sesion.lista_alumnos
+      this.sesion_id = sesion.sesion_id
       console.log(this.lista)
     })
+  }
+
+  crearQR(){
+    this.string_qrcode = 'http://127.0.0.1:800/asistencia/'+this.sesion_id+'?estudiante_id='
+  }
+
+  volver(){
+    this.router.navigate(['/profesor'])
   }
 
 }

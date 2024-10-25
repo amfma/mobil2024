@@ -29,4 +29,8 @@ export class ApiService {
   public createSesion(curso_id:number):Observable<any>{
     return this.http.post(this.url+'cursos/nueva_sesion?curso_id='+curso_id, null)
   }
+
+  public actualizarAsistencia(url:string, user_id:number):Observable<any>{
+    return this.http.post(url+user_id, null)
+  }
 }

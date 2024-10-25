@@ -4,6 +4,8 @@ import { CapacitorBarcodeScannerOptions, CapacitorBarcodeScannerTypeHint,
   CapacitorBarcodeScanner
  } from '@capacitor/barcode-scanner';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../service/auth/auth.service';
+import { ApiService } from '../service/api/api.service';
 
 
 @Component({
@@ -15,6 +17,7 @@ export class HomePage {
   data: any;
   modalScannerAbierto: boolean = false;
   barcodeResult!: string;
+  id: number= 1
   private options: CapacitorBarcodeScannerOptions ={
     scanButton: true,
     hint: CapacitorBarcodeScannerTypeHint.ALL
@@ -22,7 +25,9 @@ export class HomePage {
 
 
   constructor(private router:Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public auth: AuthService,
+    private api:ApiService
   ) {
   }
 
@@ -42,6 +47,12 @@ export class HomePage {
   public async scannear(): Promise<void>{
     this.barcodeResult = (await CapacitorBarcodeScanner.scanBarcode(this.options)).ScanResult;
     console.log(this.barcodeResult)
+    //this.api.actualizarAsistencia(this.barcodeResult, this.auth.id)
+  }
+
+  logout(){
+    this.auth.logout()
+    this.router.navigate(['/login'])
   }
 
 }

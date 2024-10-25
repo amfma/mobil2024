@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Bienvenido {{data.usuario}}</ion-card-subtitle>
+      <ion-card-subtitle>Bienvenido {{auth.name}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-grid fixed>
@@ -22,6 +22,11 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  <ion-card>
+    <ion-button (click)="logout()" expand="block" fill="solid" shape="round">
+      Cerrar Sesion
+    </ion-button>
+</ion-card>
   <ion-modal [isOpen]="modalScannerAbierto">
     <ng-template>
       <ion-header>
