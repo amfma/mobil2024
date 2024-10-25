@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../service/auth/auth.service';
+import { ApiService } from '../service/api/api.service';
 
 @Component({
   selector: 'app-profesor',
@@ -11,21 +12,44 @@ export class ProfesorPage implements OnInit{
   data: any;
   modalAbierto: boolean = false;
   qrString: string = "";
-  clase: string = "";
-  hora = "00:00";
+  cursos: any[] = []
+  sesiones: any[] = []
 
-  constructor(private router: Router, public auth: AuthService
+  constructor(private router: Router, public auth: AuthService,
+    private api:ApiService
   ) {
    }
 
    // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
    ngOnInit() {
+    this.cargar_cursos(this.auth.id??2)
    }
 
 
    abrirModal(estaAbierto: boolean){
-    console.log(this.hora)
-    this.qrString = this.qrString.concat(this.clase, this.hora)
     this.modalAbierto = estaAbierto
+   }
+
+   cargar_cursos(profesor_id: number){
+    this.api.getCursos(profesor_id).subscribe((cursos)=>{
+      this.cursos = cursos
+    })
+   }
+
+   ver_sesiones(curso_id: number){
+    this.api.getSesiones(curso_id).subscribe((sesiones)=>{
+      this.sesiones = sesiones
+      this.abrirModal(true)
+    })
+   }
+
+   crearSesion(curso_id: number){
+    let nav: NavigationExtras ={
+      state : {
+        curso_id: curso_id
+      }
+    }
+
+    this.router.navigate(['/sesion'], nav)
    }
 }

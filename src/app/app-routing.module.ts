@@ -26,7 +26,11 @@ const routes: Routes = [
     path: 'profesor',
     loadChildren: () => import('./profesor/profesor.module').then( m => m.ProfesorPageModule),
     canActivate: [AuthProfesorService]
+  },  {
+    path: 'sesion',
+    loadChildren: () => import('./sesion/sesion.module').then( m => m.SesionPageModule)
   },
+
 ];
 
 @NgModule({

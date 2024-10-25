@@ -18,40 +18,40 @@
     </ion-card-header>
     <ion-card-content>
       <ion-label>Clase</ion-label>
-      <ion-item>
-        <ion-label>Clase</ion-label>
-        <ion-select value="Clase" placeholder="Clase" [(ngModel)]="clase">
-          <ion-select-option value="ingdatos">Ingeneria de Datos</ion-select-option>
-          <ion-select-option value="ingsoftware">Ingeneria de Software</ion-select-option>
-          <ion-select-option value="movdev">Desarrollo Movil</ion-select-option>
-        </ion-select>
+      <ion-item *ngFor="let curso of cursos">
+        <ion-row>
+          <ion-col>
+            {{curso.nombre}}
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="clear" shape="round" (click)="ver_sesiones(curso.id)">
+              Ver sesiones
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button  expand="block" fill="clear" shape="round" (click)="crearSesion(curso.id)">
+              Nueva Sesion
+            </ion-button>
+          </ion-col>
+        </ion-row>
       </ion-item>
-      <ion-item>
-        <ion-label>Hora</ion-label>
-        <ion-datetime presentation="time" [(ngModel)]="hora"></ion-datetime>
-      </ion-item>
-      <ion-button expand="block" fill="clear" shape="round" (click)="abrirModal(true)">
-        Generar Codigo
-      </ion-button>
     </ion-card-content>
   </ion-card>
   <ion-modal [isOpen] = "modalAbierto">
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>QR</ion-title>
+          <ion-title>Sesiones</ion-title>
           <ion-button (click)="abrirModal(false)" expand="block" fill="clear" shape="round">
             Cerrar
           </ion-button>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-grid fixed>
+        <ion-grid *ngFor="let sesion of sesiones">
           <ion-row>
-            <ion-col class="ion-padding">
-              <qrcode [qrdata]="qrString" [width]="256" [errorCorrectionLevel]="'M'"
-              class="qr"></qrcode>
-            </ion-col>
+            <ion-col>{{sesion.id}}</ion-col>
+            <ion-col>{{sesion.fecha}}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-content>

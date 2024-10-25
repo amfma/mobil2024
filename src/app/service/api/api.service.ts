@@ -19,6 +19,14 @@ export class ApiService {
   }
 
   public getCursos(profesor_id: number):Observable<any>{
-    return this.http.get(this.url+profesor_id)
+    return this.http.get(this.url+'profesor/'+profesor_id)
+  }
+
+  public getSesiones(curso_id:number):Observable<any>{
+    return this.http.get(this.url+'sesiones/'+curso_id)
+  }
+
+  public createSesion(curso_id:number):Observable<any>{
+    return this.http.post(this.url+'cursos/nueva_sesion?curso_id='+curso_id, null)
   }
 }

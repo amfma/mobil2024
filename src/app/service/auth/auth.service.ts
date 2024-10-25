@@ -6,9 +6,9 @@ import { StorageService } from '../storage.service';
 })
 export class AuthService {
   isLogin: boolean = false;
-  role: string | undefined;
-  name: string | undefined;
-  id: number | undefined;
+  role?: string;
+  name?: string;
+  id?: number;
 
   constructor(private storage: StorageService) { }
 
