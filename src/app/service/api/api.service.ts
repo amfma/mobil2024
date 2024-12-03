@@ -6,7 +6,7 @@ import { Observable, retry } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  url: string = 'http://127.0.0.1:8000/'
+  url: string = 'https://mc12-server.onrender.com/'
 
   options = {headers: new HttpHeaders({'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'

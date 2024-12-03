@@ -41,7 +41,7 @@ sesion_id!: number;
   }
 
   crearQR(){
-    this.string_qrcode = 'http://127.0.0.1:8000/asistencia/'+this.sesion_id+'?estudiante_id='
+    this.string_qrcode = 'https://mc12-server.onrender.com/asistencia/'+this.sesion_id+'?estudiante_id='
   }
 
   volver(){
